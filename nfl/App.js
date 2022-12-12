@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Passing from './components/Passing';
 import Receiving from './components/Receiving';
 import Rushing from './components/Rushing';
+import Test from './components/Test';
+import Testi from './components/Testi';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +26,13 @@ function HomeScreen({ navigation }) {
         title="Receiving"
         onPress={() => navigation.navigate('Receiving')}
       />
+            <Button
+        title="Test"
+        onPress={() => navigation.navigate('Test')}
+      />
+               <Button
+        title="Testi"
+        onPress={() => navigation.navigate('Testi')} />
     </View>
   );
 }
@@ -37,6 +46,8 @@ export default function App() {
         <Stack.Screen name="Passing" component={Passing} />
         <Stack.Screen name="Rushing" component={Rushing} />
         <Stack.Screen name="Receiving" component={Receiving} />
+        <Stack.Screen name="Test" component={Test} />
+        <Stack.Screen name="Testi" component={Testi} />
       </Stack.Navigator>
     </NavigationContainer>
   );
