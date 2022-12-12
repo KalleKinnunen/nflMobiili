@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Box, FlatList, Center, NativeBaseProvider, Text } from "native-base";
+import { Box, FlatList, Center, NativeBaseProvider, Text, TextInput, Button } from "native-base";
 import { ActivityIndicator } from "react-native";
 
-export default function Passing() {
+export default function RushingD() {
   const [repositories, setRepositories] = useState([]);
-  
-
+  const[year, setYear] = useState(''); 
   const options = {
     method: 'GET',
     headers: {
@@ -17,18 +16,18 @@ export default function Passing() {
 
 
   const getRepositories= () => {
-    fetch('https://nfl-team-stats.p.rapidapi.com/v1/nfl-stats/teams/passing-stats/offense/2022', options)
+    fetch(`https://nfl-team-stats.p.rapidapi.com/v1/nfl-stats/teams/passing-stats/defense/2022`, options)
     .then(response => response.json())
     .then(data => setRepositories(data._embedded.teamPassingStatsList))
     
     .catch(err => console.error(err));
   }
   console.log(repositories)
-useEffect(() => {
-  
-  getRepositories();
-}, []);
 
+  useEffect(() => {
+  
+    getRepositories();
+  }, []);
 
 
   return (
@@ -39,18 +38,20 @@ useEffect(() => {
     fontWeight: "bold",
     color: "white" }}>
     
-    Offensive passing stats from this Year! </Box>
+    Defensive passing stats from this Year! </Box>
       <FlatList
           data={repositories}
           keyExtractor={({ id }, index) => id}
           renderItem={({ item }) => (
             <Box width="100%" bg="primary.50" p="4" shadow={2} _text={{
-              fontSize: "xs",
-              fontWeight: "bold",
-              color: "black" }}>{item.name}{item.passYards}yards </Box>
+                fontSize: "xs",
+                fontWeight: "bold",
+                color: "black" }}>{item.name}{item.passYards}yards allowed</Box>
           )}
-          
+   
+         
         />
+
       
       </Center>
     </NativeBaseProvider>
